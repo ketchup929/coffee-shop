@@ -192,50 +192,55 @@ const coffeeMenu = {
 };
 
 let cards =  document.querySelector(".cards");
-
-coffeeMenu.forEach(coffee => {
-    let type = coffee;
-    let name = coffee[0];
-    let image = coffee[1];
-    let price = coffee[2];
-    let description = coffee[3];
-
+const showCards = (coffeeType = "Cappuccino") => {
+  cards.innerHTML = "";
+  coffeeMenu[coffeeType].forEach(item => {
     cards.innerHTML += `
-        <div class = "card">
-            <img src="${image}" alt="${name}">
-            <span>${name}</span>
-            <div>
-                <span>${price}</span>
-                <div>
-                    <span>+</span>
-                </div>
-            </div>
-        </div>`
-});
+      <div class="card">
+        <div class="card-image"><img src="${item.Image} alt="${item.Name}""></img></div>
+        <div class="card-content">
+          <h3>${item.Name}</h3>
+          <div class="card-footer">
+            <span class="price">${item.Price}</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>`
+  });
+};
 
-const slides = document.querySelector('.slides');
-const slideCount = document.querySelectorAll('.slide').length;
+const slideButtons = document.querySelectorAll('.slide button');
 const upButton = document.querySelector('.up');
 const downButton = document.querySelector('.down');
-let currentIndex = 0;
+let currentActiveIndex = 0;
 
-const goToSlide = (index) => {
-    if (index < 0) {
-      index = slideCount - 1;
-    }
-    else if (index >= slideCount) {
-      index = 0;
-    }
-    currentIndex = index;
-    slides.style.transform = `translateX(${-index * 100}%)`
-}
+const activateButton = (index) => {
+  slideButtons.forEach(b => b.classList.remove('active'));
+  
+  slideButtons[index].classList.add('active');
+  
+  const coffeeType = slideButtons[index].textContent;
+  showCards(coffeeType);
+  
+  currentActiveIndex = index;
+};
 
-downButton.addEventListener('click', () => {
-    goToSlide(currentIndex - 1);
+slideButtons.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    activateButton(index);
+  });
 });
 
 upButton.addEventListener('click', () => {
-    goToSlide(currentIndex + 1);
+  let newIndex = currentActiveIndex - 1;
+  if (newIndex < 0) newIndex = slideButtons.length - 1;
+  activateButton(newIndex);
 });
 
-goToSlide(0);
+downButton.addEventListener('click', () => {
+  let newIndex = currentActiveIndex + 1;
+  if (newIndex >= slideButtons.length) newIndex = 0; 
+  activateButton(newIndex);
+});
+
+activateButton(0);
