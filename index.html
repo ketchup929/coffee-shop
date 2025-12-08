@@ -7,37 +7,72 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="inputAndStatus">
-        <input type="text" placeholder="Browse yout favourite coffee here...">
-        <p>ORDER STATUS</p>
-        <p class="counter"></p>
-    </div>
+    <div class="filterAndInputAndStatus">
 
-    <div class="typeOfCoffee">
-        <div>
-            <p>Cappuccino</p>
+        <div class="slider">
+
+            <button class="up">&#9650;</button>
+
+            <div class="slides">
+                <div class="slide">
+                    <button>Cappuccino</button>
+                </div>
+
+                <div class="slide">
+                    <button>Latte</button>
+                </div>
+
+                <div class="slide">
+                    <button>Americano</button>
+                </div>
+
+                <div class="slide">
+                    <button>Expresso</button>
+                </div>
+
+                <div class="slide">
+                    <button>Flat White</button>
+                </div>
+            </div>
+
+            <button class="down">&#9660;</button>
         </div>
 
-        <div>
-            <p>Latte</p>
+        <div class="input">
+            <input type="text" placeholder="Browse yout favourite coffee here..." class="browse">
         </div>
 
-        <div>
-            <p>Americano</p>
+        <div class="status">
+            <div class="picture">
+                <div class="circle">
+                    <svg width="106" height="106" viewBox="0 0 106 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="53" cy="53" r="53" fill="#AC8F64"/>
+                    </svg>
+                </div>
+                <div class="ring-ring">
+                    <svg width="48" height="38" viewBox="0 0 48 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M45.6 26.125C45.6 15.1406 37.1832 6.07763 26.4 4.89013V0H21.6V4.89013C10.8168 6.07763 2.4 15.1406 2.4 26.125V30.875H45.6V26.125ZM0 33.25H48V38H0V33.25Z" fill="#483431"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div>
+                <p>ORDER STATUS</p>
+            </div>
+
+            <div>
+                <p class="counter"></p>
+            </div>
+           
         </div>
 
-        <div>
-            <p>Expresso</p>
-        </div>
-
-        <div>
-            <p>Flat White</p>
-        </div>
+        
     </div>
 
     <div class="cards">
-        <div></div>
     </div>
+
+    
 
     <footer>
         <p>Мухина Полина Евгеньевна</p> 
