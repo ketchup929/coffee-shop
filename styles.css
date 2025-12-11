@@ -17,10 +17,32 @@ body {
     border: 3px solid #acacac;
 }
 
-.filterAndInputAndStatus {
+/* .filterAndInputAndStatus {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+} */
+
+.menuPage {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+.inputAndStatusAndCards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.inputAndStatus {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
 .picture {
@@ -49,21 +71,21 @@ body {
 .slides {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   width: 100%;
+  height: 85%
 }
 
 .slide {
   width: 100%;
+  height: 20%;
 }
 
 .slide button {
   width: 100%;
-  padding: 12px 0;
-  border: 0px;
-  background-color: #FFFFFF;
+  height: 100%;
+  border: none;
+  background-color: transparent;
   font-size: 16px;
-  padding-left: 15px;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -76,15 +98,17 @@ body {
 }
 
 .up, .down {
-    position: absolute;
-    left: 50%;
-    background: #AC8F64;
-    border: none;
-    color: white;
+    color: rgb(167, 167, 167);
     width: 30px;
     height: 30px;
-    border-radius: 50%;
+    border: none;
+    background-color: transparent;
     cursor: pointer;
+    width: 100%;
+}
+
+.up:hover, .down:hover {
+  border: solid 3px rgb(167, 167, 167);
 }
 
 .cards {
@@ -94,6 +118,7 @@ body {
   gap: 20px;
   margin-top: 40px;
   padding: 0 20px;
+  max-width: 200px;
 }
 
 .card {
@@ -101,6 +126,12 @@ body {
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+.card:hover {
+  border-radius: 10px;
+  border: solid 4px #AC8F64;
 }
 
 .card-image {
@@ -133,7 +164,6 @@ body {
   align-items: center;
   gap: 5px;
   background-color: #DADADA;
-  /* width: 80px; */
 }
 
 .price {
@@ -151,7 +181,6 @@ body {
   color: #AC8F64;
   font-size: 20px;
   cursor: pointer;
-  transition: all 0.3s;
 }
 
 .add-btn:hover {
