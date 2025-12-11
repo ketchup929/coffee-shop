@@ -12,10 +12,11 @@ body {
     border: 0px;
     font-size: 20px;
     font-family: 'Times New Roman', Times, serif;
+    border: 3px solid transparent;
 }
 
 .browse:hover {
-    border: 3px solid #acacac;
+    border-color: #acacac;
 }
 
 /* .filterAndInputAndStatus {
@@ -108,6 +109,7 @@ body {
     background-color: transparent;
     cursor: pointer;
     width: 100%;
+    border: 3px solid transparent;
 }
 
 /* .up {
@@ -115,7 +117,7 @@ body {
 } */
 
 .up:hover, .down:hover {
-  border: solid 3px rgb(167, 167, 167);
+  border-color: rgb(167, 167, 167);
 }
 
 .cards {
@@ -137,11 +139,12 @@ body {
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   width: 250px;
+  border: 4px solid transparent;
 }
 
 .card:hover {
   border-radius: 10px;
-  border: solid 4px #AC8F64;
+  border-color: #AC8F64;
 }
 
 .card-image {
@@ -201,4 +204,5 @@ body {
 .add-btn:hover {
   background: #AC8F64;
   color: white;
+  border:#483431;
 }
