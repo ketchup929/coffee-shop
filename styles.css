@@ -47,17 +47,29 @@ body {
     gap: 20px;
 }
 
-.picture {
-    position: relative;
-}
-
-.circle, .ring-ring {
-    position: absolute;
-}
-
 .status {
     display: flex;
     flex-direction: row;
+    gap: 100px;
+    position: relative;
+}
+
+.picture {
+  position: relative;
+}
+
+.circle, .ring-ring {
+  position: absolute;
+}
+
+.ring-ring {
+  margin-left: 29px;
+  margin-top: 30px;
+} 
+
+.ORDER-STATUS a {
+  text-decoration: none;
+  color: #483431;
 }
 
 .slider {
@@ -205,4 +217,62 @@ body {
   background: #AC8F64;
   color: white;
   border:#483431;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.statusPage {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background: white;
+  padding: 20px;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.coffeeInfoPage {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  min-height: 100vh;
+}
+
+.imgAndInfo img {
+  width:300px; 
+  height:auto; 
+  margin-right:30px;
+}
+
+.nameOfCoffee {
+  font-size:28px; 
+  font-weight:bold;
+}
+
+.descriptionOfCoffee {
+  margin:15px 0;
+}
+
+.placeOrderBtn {
+  padding:10px 20px; 
+  background:#CD4126; 
+  color:white; 
+  border:none; 
+  border-radius:5px;
 }
