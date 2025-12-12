@@ -191,13 +191,16 @@ const coffeeMenu = {
   ]
 };
 
+let currentSelectedCoffee = null;
+
 let cards =  document.querySelector(".cards");
+
 const showCards = (coffeeType = "Cappuccino") => {
   cards.innerHTML = "";
   coffeeMenu[coffeeType].forEach(item => {
     cards.innerHTML += `
-      <div class="card">
-        <div class="card-image"><img src="${item.Image}" alt="${item.Name}"></img></div>
+      <div class="card" data-coffee='${JSON.stringify(item)}'>
+        <div class="card-image"><img src="${item.Image || 'img/coffee-placeholder.png'}" alt="${item.Name}"></div>
         <div class="card-content">
           <h3>${item.Name}</h3>
           <div class="card-footer">
@@ -205,9 +208,122 @@ const showCards = (coffeeType = "Cappuccino") => {
             <button class="add-btn">+</button>
           </div>
         </div>
-      </div>`
+      </div>`;
+  });
+
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      const coffeeData = JSON.parse(card.getAttribute('data-coffee'));
+      showCoffeeDetail(coffeeData);
+    });
   });
 };
+
+let coffeeInfo = document.querySelector(".imgAndInfo")
+
+function showCoffeeDetail(coffee) {
+  currentSelectedCoffee = coffee;
+  document.querySelector('.menuPage').classList.add('hidden');
+  document.querySelector('.coffeeInfoPage').classList.remove('hidden');
+  
+  const imgAndInfo = document.querySelector('.imgAndInfo');
+  imgAndInfo.innerHTML = `
+    <img src="${coffee.Image}" alt="${coffee.Name}">
+    <div class="infoAboutCoffee">
+      <p class="nameOfCoffee">${coffee.Name}</p>
+      <p class="descriptionOfCoffee">${coffee.Description}</p>
+
+      <span>SIZE</span>
+      <div class="size">
+        <button id="short">Short</button>
+        <button id="tall">Tall</button>
+        <button id="grande">Grande</button>
+        <button id="venti">Venti</button>
+      </div>
+
+      <span>EXTRA</span>
+      <div class="extra">
+        <button>SUGAR</button>
+        <button>MILK</button>
+      </div>
+
+      <span>MILK TYPE</span>
+      <div class="milk">
+        <button>OAT MILK</button>
+        <button>SOY MILK</button>
+        <button>ALMOND MILK</button>
+      </div>
+
+      <div class="price">
+        <p id="price">${coffee.Price}</p>
+      </div>
+
+      <button id="placeOrderBtn">PLACE ORDER</button>
+    </div>
+  `;
+
+  document.getElementById('placeOrderBtn')?.addEventListener('click', () => {
+    showOrderStatus();
+  });
+}
+
+function showOrderStatus() {
+  document.querySelector('.overlay').classList.remove('hidden');
+  document.querySelector('.statusPage').classList.remove('hidden');
+  
+  document.querySelector('.statusPage .counter').textContent = 
+    `You ordered: ${currentSelectedCoffee.Name}`;
+}
+
+document.getElementById('backToMenuFromCoffee')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.querySelector('.coffeeInfoPage').classList.add('hidden');
+  document.querySelector('.menuPage').classList.remove('hidden');
+});
+
+document.getElementById('backToMenuFromStatus')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.querySelector('.overlay').classList.add('hidden');
+  document.querySelector('.statusPage').classList.add('hidden');
+  document.querySelector('.coffeeInfoPage').classList.add('hidden');
+  document.querySelector('.menuPage').classList.remove('hidden');
+});
+
+document.querySelector('.overlay').addEventListener('click', () => {
+  document.querySelector('.overlay').classList.add('hidden');
+  document.querySelector('.statusPage').classList.add('hidden');
+});
+
+let statusInfo = document.querySelector(".orderStatus")
+const showStatus = `
+<div class="statusTitleAndButtonToHide">
+            <p>Order Status</p>
+            <div class="hideButton">
+                <button>HIDE</button>
+                <span>→</span>
+            </div>
+        </div>  
+
+        <div class="orderedCoffee">
+            <img src="" alt="">
+            <p id="nameOfTheCoffee"></p>
+            <p id="coundOfThisCoffee"></p>
+        </div>
+
+        <div class="price">
+            <div>
+                <p class="subtotal"></p>
+            </div>
+            
+            <div>
+                <p class="discountForTheFirstOrder"></p>
+            </div>
+
+            <div>
+                <p class="total"></p>
+            </div>
+        </div>
+`
 
 const slideButtons = document.querySelectorAll('.slide button');
 const upButton = document.querySelector('.up');
@@ -244,3 +360,15 @@ downButton.addEventListener('click', () => {
 });
 
 activateButton(0);
+
+document.getElementById('openOrderStatus')?.addEventListener('click', (e) => {
+e.preventDefault();
+
+if (currentSelectedCoffee) {
+  showOrderStatus();
+} else {
+  document.querySelector('.overlay').classList.remove('hidden');
+  document.querySelector('.statusPage').classList.remove('hidden');
+  document.querySelector('.statusPage .counter').textContent = "No active order yet.";
+}
+});
