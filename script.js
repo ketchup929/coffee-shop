@@ -191,10 +191,12 @@ const coffeeMenu = {
   ]
 };
 
-let currentSelectedCoffee = null;
+let orders = [];
 
 let cards =  document.querySelector(".cards");
-
+const orderStatusLink = document.querySelector(".ORDER-STATUS a");
+const counterElement = document.querySelector('.counter');
+const statusCounterElement = document.querySelector('.statusPage .counter');
 const showCards = (coffeeType = "Cappuccino") => {
   cards.innerHTML = "";
   coffeeMenu[coffeeType].forEach(item => {
@@ -212,58 +214,162 @@ const showCards = (coffeeType = "Cappuccino") => {
   });
 
   document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      const coffeeData = JSON.parse(card.getAttribute('data-coffee'));
-      showCoffeeDetail(coffeeData);
+    const coffeeData = JSON.parse(card.getAttribute('data-coffee'));
+    
+    card.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('add-btn')) {
+        showCoffeeDetail(coffeeData);
+      }
+    });
+    
+    const addBtn = card.querySelector('.add-btn');
+    addBtn.addEventListener('click', (e) => {
+      e.stopPropagation(); 
+      addToOrder(coffeeData);
     });
   });
 };
 
-let coffeeInfo = document.querySelector(".imgAndInfo")
+const addToOrder = (coffee) => {
+const existingOrder = orders.find(order => order.name === coffee.Name);
+  
+  if (existingOrder) {
+    existingOrder.quantity++; 
+  } 
+  else {
+    orders.push({
+      name: coffee.Name,
+      price: coffee.Price,
+      quantity: 1,
+      image: coffee.Image || 'img/coffee-placeholder.png'
+    });
+  }
+  
+  updateOrderCounter();
 
-function showCoffeeDetail(coffee) {
-  currentSelectedCoffee = coffee;
+  if (!document.querySelector('.statusPage').classList.contains('hidden')) {
+    displayOrdersInStatus();
+  }
+}
+
+const displayOrdersInStatus = () => {
+  const statusContainer = document.querySelector('.imgAndInfoStatus');
+  
+  if (orders.length === 0) {
+    statusContainer.innerHTML = '<p>No items in order yet.</p>';
+    return;
+  }
+  
+  let html = '<h3>Your Order:</h3>';
+  orders.forEach(order => {
+    html += `
+      <div class="order-item">
+        <p>${order.name} x${order.quantity} - ${order.price}</p>
+      </div>
+    `;
+  });
+  
+  statusContainer.innerHTML = html;
+}
+
+const updateOrderCounter = () => {
+  let totalItems = 0;
+  for (const order of orders) {
+    totalItems += order.quantity;
+  }
+  
+  if (counterElement) {
+    counterElement.innerHTML = totalItems > 0 ? 
+      `<span class="order-count">${totalItems}</span>` : 
+      '';
+  }
+  
+  const ringRing = document.querySelector('.ring-ring');
+  if (ringRing) {
+    if (totalItems > 0) {
+      ringRing.style.fill = '#CD4126';
+    } else {
+      ringRing.style.fill = '#483431';
+    }
+  }
+}
+
+const showCoffeeDetail = (coffee) => {
   document.querySelector('.menuPage').classList.add('hidden');
   document.querySelector('.coffeeInfoPage').classList.remove('hidden');
   
   const imgAndInfo = document.querySelector('.imgAndInfo');
   imgAndInfo.innerHTML = `
-    <img src="${coffee.Image}" alt="${coffee.Name}">
-    <div class="infoAboutCoffee">
-      <p class="nameOfCoffee">${coffee.Name}</p>
-      <p class="descriptionOfCoffee">${coffee.Description}</p>
+  <img src="${coffee.Image}" alt="${coffee.Name}">
+  <div class="infoAboutCoffee">
+    <p class="nameOfCoffee">${coffee.Name}</p>
+    <p class="descriptionOfCoffee">${coffee.Description}</p>
 
-      <span>SIZE</span>
-      <div class="size">
-        <button id="short">Short</button>
-        <button id="tall">Tall</button>
-        <button id="grande">Grande</button>
-        <button id="venti">Venti</button>
-      </div>
-
-      <span>EXTRA</span>
-      <div class="extra">
-        <button>SUGAR</button>
-        <button>MILK</button>
-      </div>
-
-      <span>MILK TYPE</span>
-      <div class="milk">
-        <button>OAT MILK</button>
-        <button>SOY MILK</button>
-        <button>ALMOND MILK</button>
-      </div>
-
-      <div class="price">
-        <p id="price">${coffee.Price}</p>
-      </div>
-
-      <button id="placeOrderBtn">PLACE ORDER</button>
+    <span>SIZE</span>
+    <div class="size">
+      <button class="size-btn" data-size="short">Short</button>
+      <button class="size-btn" data-size="tall">Tall</button>
+      <button class="size-btn" data-size="grande">Grande</button>
+      <button class="size-btn" data-size="venti">Venti</button>
     </div>
-  `;
+
+    <span>EXTRA</span>
+    <div class="extra">
+      <button class="extra-btn" data-extra="sugar">SUGAR</button>
+      <button class="extra-btn" data-extra="milk">MILK</button>
+    </div>
+
+    <span>MILK TYPE</span>
+    <div class="milk">
+      <button class="milk-btn" data-milk="oat">OAT MILK</button>
+      <button class="milk-btn" data-milk="soy">SOY MILK</button>
+      <button class="milk-btn" data-milk="almond">ALMOND MILK</button>
+    </div>
+
+    <div class="price">
+      <p id="price">${coffee.Price}</p>
+    </div>
+
+    <button class="placeOrderBtn" id="placeOrderBtn">PLACE ORDER</button>
+    <div class="view-order-status-link">
+      <a href="#" id="viewOrderStatusLink">VIEW ORDER STATUS →</a>
+    </div>
+  </div>
+`;
+
+  document.getElementById('viewOrderStatusLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showOrderStatus();
+  });
+
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('.extra-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  });
+
+  document.querySelectorAll('.milk-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.milk-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
 
   document.getElementById('placeOrderBtn')?.addEventListener('click', () => {
+    addToOrder(coffee);
     showOrderStatus();
+  });
+
+  document.getElementById('hideStatusBtn')?.addEventListener('click', () => {
+  document.querySelector('.overlay').classList.add('hidden');
+  document.querySelector('.statusPage').classList.add('hidden');
   });
 }
 
@@ -271,8 +377,19 @@ function showOrderStatus() {
   document.querySelector('.overlay').classList.remove('hidden');
   document.querySelector('.statusPage').classList.remove('hidden');
   
-  document.querySelector('.statusPage .counter').textContent = 
-    `You ordered: ${currentSelectedCoffee.Name}`;
+  let totalItems = 0;
+  for (const order of orders) {
+    totalItems += order.quantity;
+  }
+  const statusInfo = document.querySelector('.statusPage .counter');
+  
+  if (totalItems > 0) {
+    statusInfo.textContent = `You have ${totalItems} item(s) in order`;
+  } else {
+    statusInfo.textContent = "No active order yet.";
+  }
+
+  displayOrdersInStatus();
 }
 
 document.getElementById('backToMenuFromCoffee')?.addEventListener('click', (e) => {
@@ -285,8 +402,6 @@ document.getElementById('backToMenuFromStatus')?.addEventListener('click', (e) =
   e.preventDefault();
   document.querySelector('.overlay').classList.add('hidden');
   document.querySelector('.statusPage').classList.add('hidden');
-  document.querySelector('.coffeeInfoPage').classList.add('hidden');
-  document.querySelector('.menuPage').classList.remove('hidden');
 });
 
 document.querySelector('.overlay').addEventListener('click', () => {
@@ -294,36 +409,14 @@ document.querySelector('.overlay').addEventListener('click', () => {
   document.querySelector('.statusPage').classList.add('hidden');
 });
 
-let statusInfo = document.querySelector(".orderStatus")
-const showStatus = `
-<div class="statusTitleAndButtonToHide">
-            <p>Order Status</p>
-            <div class="hideButton">
-                <button>HIDE</button>
-                <span>→</span>
-            </div>
-        </div>  
+orderStatusLink?.addEventListener('click', (e) => {
+  e.preventDefault();
+  showOrderStatus();
+});
 
-        <div class="orderedCoffee">
-            <img src="" alt="">
-            <p id="nameOfTheCoffee"></p>
-            <p id="coundOfThisCoffee"></p>
-        </div>
-
-        <div class="price">
-            <div>
-                <p class="subtotal"></p>
-            </div>
-            
-            <div>
-                <p class="discountForTheFirstOrder"></p>
-            </div>
-
-            <div>
-                <p class="total"></p>
-            </div>
-        </div>
-`
+document.querySelector('.picture')?.addEventListener('click', () => {
+  showOrderStatus();
+});
 
 const slideButtons = document.querySelectorAll('.slide button');
 const upButton = document.querySelector('.up');
@@ -332,12 +425,10 @@ let currentActiveIndex = 0;
 
 const activateButton = (index) => {
   slideButtons.forEach(b => b.classList.remove('active'));
-  
   slideButtons[index].classList.add('active');
   
   const coffeeType = slideButtons[index].textContent;
   showCards(coffeeType);
-  
   currentActiveIndex = index;
 };
 
@@ -355,20 +446,8 @@ upButton.addEventListener('click', () => {
 
 downButton.addEventListener('click', () => {
   let newIndex = currentActiveIndex + 1;
-  if (newIndex >= slideButtons.length) newIndex = 0; 
+  if (newIndex >= slideButtons.length) newIndex = 0;
   activateButton(newIndex);
 });
 
 activateButton(0);
-
-document.getElementById('openOrderStatus')?.addEventListener('click', (e) => {
-e.preventDefault();
-
-if (currentSelectedCoffee) {
-  showOrderStatus();
-} else {
-  document.querySelector('.overlay').classList.remove('hidden');
-  document.querySelector('.statusPage').classList.remove('hidden');
-  document.querySelector('.statusPage .counter').textContent = "No active order yet.";
-}
-});

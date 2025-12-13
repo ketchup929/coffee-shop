@@ -19,18 +19,11 @@ body {
     border-color: #acacac;
 }
 
-/* .filterAndInputAndStatus {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} */
-
 .menuPage {
     display: flex;
     flex-direction: row;
     gap: 30px;
     padding: 20px;
-    /* max-width: 1200px; */
 }
 
 .inputAndStatusAndCards {
@@ -123,10 +116,6 @@ body {
     width: 100%;
     border: 3px solid transparent;
 }
-
-/* .up {
-  margin-bottom: 10px;
-} */
 
 .up:hover, .down:hover {
   border-color: rgb(167, 167, 167);
@@ -255,24 +244,227 @@ body {
 }
 
 .imgAndInfo img {
-  width:300px; 
-  height:auto; 
-  margin-right:30px;
+  width: 300px; 
+  height: auto; 
+  margin-right: 30px;
 }
 
 .nameOfCoffee {
-  font-size:28px; 
-  font-weight:bold;
+  font-size: 28px; 
+  font-weight: bold;
 }
 
 .descriptionOfCoffee {
-  margin:15px 0;
+  margin: 15px 0;
 }
 
 .placeOrderBtn {
-  padding:10px 20px; 
-  background:#CD4126; 
-  color:white; 
-  border:none; 
-  border-radius:5px;
+  padding: 10px 20px; 
+  background: #CD4126; 
+  color: white; 
+  border: none; 
+  border-radius: 5px;
+}
+
+
+
+.order-count {
+  background-color: #CD4126;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.size-btn.active,
+.extra-btn.active,
+.milk-btn.active {
+  background-color: #AC8F64;
+  color: white;
+  border-color: #8B7355;
+}
+
+.size, .extra, .milk {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 20px 0;
+}
+
+.size-btn, .extra-btn, .milk-btn {
+  padding: 8px 15px;
+  border: 2px solid #DADADA;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.size-btn:hover, .extra-btn:hover, .milk-btn:hover {
+  border-color: #AC8F64;
+}
+
+.addToOrderBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #AC8F64;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+.addToOrderBtn:hover {
+  background: #8B7355;
+}
+
+.placeOrderBtn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #CD4126;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.placeOrderBtn:hover {
+  background: #B03A22;
+}
+
+.picture {
+  cursor: pointer;
+}
+
+.card {
+  cursor: pointer;
+}
+
+.add-btn {
+  cursor: pointer;
+}
+
+.statusPage .imgAndInfoStatus {
+  margin-top: 20px;
+  padding: 15px;
+  background: #F6F6F6;
+  border-radius: 8px;
+}
+
+.ORDER-STATUS a, 
+#backToMenuFromCoffee,
+#backToMenuFromStatus {
+  text-decoration: none;
+  color: #483431;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ORDER-STATUS a:hover,
+#backToMenuFromCoffee:hover,
+#backToMenuFromStatus:hover {
+  color: #CD4126;
+}
+
+.viewOrderBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #AC8F64;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+.viewOrderBtn:hover {
+  background: #8B7355;
+}
+
+.order-item {
+  padding: 10px;
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 10px;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.view-order-status-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.view-order-status-link a {
+  text-decoration: none;
+  color: #AC8F64;
+  font-weight: bold;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.view-order-status-link a:hover {
+  color: #8B7355;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #DADADA;
+}
+
+.status-header .status {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.status-header .status p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #483431;
+  margin: 0;
+}
+
+.hide-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.hide-status-btn {
+  background: #AC8F64;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hide-status-btn:hover {
+  background: #8B7355;
+}
+
+.hide-status-btn .arrow {
+  font-size: 16px;
+  font-weight: bold;
 }
