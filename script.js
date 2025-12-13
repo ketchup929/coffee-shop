@@ -193,6 +193,32 @@ const coffeeMenu = {
 
 let orders = [];
 
+const calculatePrice = (basePrice, size) => {
+  const priceMap = {
+    'short': 0.9,
+    'tall': 1.0,    
+    'grande': 1.15, 
+    'venti': 1.3    
+  };
+  
+  const numericPrice = parseInt(basePrice.replace('₽', '').trim());
+  return Math.round(numericPrice * priceMap[size] || numericPrice);
+};
+
+const calculateTotal = () => {
+  let subtotal = 0;
+  
+  orders.forEach(order => {
+    const price = parseInt(order.price.replace('₽', '').trim());
+    subtotal += price * order.quantity;
+  });
+  
+  const discount = Math.round(subtotal * 0.1);
+  const total = subtotal - discount;
+  
+  return { subtotal, discount, total };
+};
+
 let cards =  document.querySelector(".cards");
 const orderStatusLink = document.querySelector(".ORDER-STATUS a");
 const counterElement = document.querySelector('.counter');
@@ -231,17 +257,18 @@ const showCards = (coffeeType = "Cappuccino") => {
 };
 
 const addToOrder = (coffee) => {
-const existingOrder = orders.find(order => order.name === coffee.Name);
+  const existingOrder = orders.find(order => order.name === coffee.name && order.price === coffee.price);
   
   if (existingOrder) {
     existingOrder.quantity++; 
   } 
   else {
     orders.push({
-      name: coffee.Name,
-      price: coffee.Price,
+      name: coffee.name,
+      price: coffee.price,
       quantity: 1,
-      image: coffee.Image || 'img/coffee-placeholder.png'
+      image: coffee.image || 'img/coffee-placeholder.png',
+      size: coffee.size || 'tall'
     });
   }
   
@@ -260,6 +287,8 @@ const displayOrdersInStatus = () => {
     return;
   }
   
+  const { subtotal, discount, total } = calculateTotal();
+  
   let html = '<h3>Your Order:</h3>';
   orders.forEach(order => {
     html += `
@@ -269,8 +298,25 @@ const displayOrdersInStatus = () => {
     `;
   });
   
+  html += `
+    <div class="order-summary">
+      <div class="price-row">
+        <span>Subtotal:</span>
+        <span class="price-value">${subtotal}₽</span>
+      </div>
+      <div class="price-row discount">
+        <span>First Order Discount (10%):</span>
+        <span class="price-value">-${discount}₽</span>
+      </div>
+      <div class="price-row total">
+        <span>Total:</span>
+        <span class="price-value">${total}₽</span>
+      </div>
+    </div>
+  `;
+  
   statusContainer.innerHTML = html;
-}
+};
 
 const updateOrderCounter = () => {
   let totalItems = 0;
@@ -292,66 +338,96 @@ const updateOrderCounter = () => {
       ringRing.style.fill = '#483431';
     }
   }
+  
+  const statusCounter = document.querySelector('.statusPage .counter');
+  if (statusCounter) {
+    statusCounter.textContent = totalItems > 0 ? 
+      `You have ${totalItems} item(s) in order` : 
+      "No active order yet.";
+  }
 }
 
 const showCoffeeDetail = (coffee) => {
   document.querySelector('.menuPage').classList.add('hidden');
   document.querySelector('.coffeeInfoPage').classList.remove('hidden');
   
+  const basePrice = parseInt(coffee.Price.replace('₽', '').trim());
+  
   const imgAndInfo = document.querySelector('.imgAndInfo');
   imgAndInfo.innerHTML = `
-  <img src="${coffee.Image}" alt="${coffee.Name}">
-  <div class="infoAboutCoffee">
-    <p class="nameOfCoffee">${coffee.Name}</p>
-    <p class="descriptionOfCoffee">${coffee.Description}</p>
+    <img src="${coffee.Image}" alt="${coffee.Name}">
+    <div class="infoAboutCoffee">
+      <p class="nameOfCoffee">${coffee.Name}</p>
+      <p class="descriptionOfCoffee">${coffee.Description}</p>
 
-    <span>SIZE</span>
-    <div class="size">
-      <button class="size-btn" data-size="short">Short</button>
-      <button class="size-btn" data-size="tall">Tall</button>
-      <button class="size-btn" data-size="grande">Grande</button>
-      <button class="size-btn" data-size="venti">Venti</button>
+      <span>SIZE</span>
+      <div class="size">
+        <button class="size-btn" data-size="short" data-price="${Math.round(basePrice * 0.9)}">Short</button>
+        <button class="size-btn" data-size="tall" data-price="${basePrice}">Tall</button>
+        <button class="size-btn" data-size="grande" data-price="${Math.round(basePrice * 1.15)}">Grande</button>
+        <button class="size-btn" data-size="venti" data-price="${Math.round(basePrice * 1.3)}">Venti</button>
+      </div>
+
+      <span>EXTRA</span>
+      <div class="extra">
+        <button class="extra-btn" data-extra="sugar" data-price="30">SUGAR (+30₽)</button>
+        <button class="extra-btn" data-extra="milk" data-price="40">MILK (+40₽)</button>
+      </div>
+
+      <span>MILK TYPE</span>
+      <div class="milk">
+        <button class="milk-btn" data-milk="oat" data-price="50">OAT MILK (+50₽)</button>
+        <button class="milk-btn" data-milk="soy" data-price="40">SOY MILK (+40₽)</button>
+        <button class="milk-btn" data-milk="almond" data-price="60">ALMOND MILK (+60₽)</button>
+      </div>
+
+      <div class="price-display">
+        <p>Price: <span id="currentPrice">${basePrice}</span>₽</p>
+      </div>
+
+      <button class="placeOrderBtn" id="placeOrderBtn">PLACE ORDER</button>
+      <div class="view-order-status-link">
+        <a href="#" id="viewOrderStatusLink">VIEW ORDER STATUS →</a>
+      </div>
     </div>
+  `;
 
-    <span>EXTRA</span>
-    <div class="extra">
-      <button class="extra-btn" data-extra="sugar">SUGAR</button>
-      <button class="extra-btn" data-extra="milk">MILK</button>
-    </div>
-
-    <span>MILK TYPE</span>
-    <div class="milk">
-      <button class="milk-btn" data-milk="oat">OAT MILK</button>
-      <button class="milk-btn" data-milk="soy">SOY MILK</button>
-      <button class="milk-btn" data-milk="almond">ALMOND MILK</button>
-    </div>
-
-    <div class="price">
-      <p id="price">${coffee.Price}</p>
-    </div>
-
-    <button class="placeOrderBtn" id="placeOrderBtn">PLACE ORDER</button>
-    <div class="view-order-status-link">
-      <a href="#" id="viewOrderStatusLink">VIEW ORDER STATUS →</a>
-    </div>
-  </div>
-`;
-
-  document.getElementById('viewOrderStatusLink')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    showOrderStatus();
-  });
+  const updatePrice = () => {
+    let price = basePrice;
+    let priceText = `${basePrice}₽`;
+    
+    const selectedSize = document.querySelector('.size-btn.active');
+    if (selectedSize) {
+      price = parseInt(selectedSize.getAttribute('data-price'));
+      priceText = `${price}₽`;
+    }
+    
+    document.querySelectorAll('.extra-btn.active').forEach(extra => {
+      price += parseInt(extra.getAttribute('data-price'));
+    });
+    
+    const selectedMilk = document.querySelector('.milk-btn.active');
+    if (selectedMilk) {
+      price += parseInt(selectedMilk.getAttribute('data-price'));
+    }
+    
+    document.getElementById('currentPrice').textContent = price;
+    
+    document.getElementById('placeOrderBtn').setAttribute('data-final-price', price);
+  };
 
   document.querySelectorAll('.size-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
+      updatePrice();
     });
   });
 
   document.querySelectorAll('.extra-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       this.classList.toggle('active');
+      updatePrice();
     });
   });
 
@@ -359,19 +435,30 @@ const showCoffeeDetail = (coffee) => {
     btn.addEventListener('click', function() {
       document.querySelectorAll('.milk-btn').forEach(b => b.classList.remove('active'));
       this.classList.add('active');
+      updatePrice();
     });
   });
 
-  document.getElementById('placeOrderBtn')?.addEventListener('click', () => {
-    addToOrder(coffee);
+  document.getElementById('viewOrderStatusLink')?.addEventListener('click', (e) => {
+    e.preventDefault();
     showOrderStatus();
   });
 
-  document.getElementById('hideStatusBtn')?.addEventListener('click', () => {
-  document.querySelector('.overlay').classList.add('hidden');
-  document.querySelector('.statusPage').classList.add('hidden');
+  document.getElementById('placeOrderBtn')?.addEventListener('click', () => {
+    const finalPrice = document.getElementById('placeOrderBtn').getAttribute('data-final-price') || basePrice;
+    
+    const orderItem = {
+      name: coffee.Name,
+      price: `${finalPrice}₽`,
+      quantity: 1,
+      image: coffee.Image || 'img/coffee-placeholder.png',
+      size: document.querySelector('.size-btn.active')?.getAttribute('data-size') || 'tall'
+    };
+    
+    addToOrder(orderItem);
+    showOrderStatus();
   });
-}
+};
 
 function showOrderStatus() {
   document.querySelector('.overlay').classList.remove('hidden');

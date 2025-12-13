@@ -468,3 +468,45 @@ body {
   font-size: 16px;
   font-weight: bold;
 }
+
+.price-display {
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #483431;
+}
+
+.price-display #currentPrice {
+  color: #CD4126;
+  font-size: 24px;
+}
+
+.order-summary {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #DADADA;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.price-row.discount {
+  color: #AC8F64;
+}
+
+.price-row.total {
+  font-weight: bold;
+  font-size: 18px;
+  color: #CD4126;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #DADADA;
+}
+
+.price-value {
+  font-weight: bold;
+}
