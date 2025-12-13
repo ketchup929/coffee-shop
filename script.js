@@ -3,37 +3,37 @@ const coffeeMenu = {
     {
       "Name": "Classic Cappuccino",
       "Image": "",
-      "Price": "320₽",
+      "Price": "$3.56",
       "Description": "Perfect balance of espresso, milk and milk foam."
     },
     {
       "Name": "Coconut Milk Cappuccino",
       "Image": "",
-      "Price": "380₽",
+      "Price": "$4.22",
       "Description": "Lactose-free option with a light tropical aftertaste."
     },
     {
       "Name": "Vanilla Cappuccino",
       "Image": "",
-      "Price": "350₽",
+      "Price": "$3.89",
       "Description": "With natural vanilla syrup."
     },
     {
       "Name": "Chocolate Cappuccino (Mochaccino)",
       "Image": "",
-      "Price": "370₽",
+      "Price": "$4.11",
       "Description": "With dark chocolate or cocoa."
     },
     {
       "Name": "Cinnamon & Cardamom Cappuccino",
       "Image": "",
-      "Price": "340₽",
+      "Price": "$3.78",
       "Description": "Warming drink with spicy notes."
     },
     {
       "Name": "Cappuccino Freddo (Iced)",
       "Image": "",
-      "Price": "360₽",
+      "Price": "$4.00",
       "Description": "Cold version with ice and airy foam."
     }
   ],
@@ -41,37 +41,37 @@ const coffeeMenu = {
     {
       "Name": "Classic Latte",
       "Image": "",
-      "Price": "350₽",
+      "Price": "$3.89",
       "Description": "Gentle coffee with lots of frothed milk."
     },
     {
       "Name": "Oat Milk Latte",
       "Image": "",
-      "Price": "380₽",
+      "Price": "$4.22",
       "Description": "Plant-based alternative with creamy texture."
     },
     {
       "Name": "Caramel Latte",
       "Image": "",
-      "Price": "390₽",
+      "Price": "$4.33",
       "Description": "Sweet drink with caramel syrup and foam art."
     },
     {
       "Name": "Lavender Latte",
       "Image": "",
-      "Price": "370₽",
+      "Price": "$4.11",
       "Description": "With floral lavender notes, calming and aromatic."
     },
     {
       "Name": "Matcha Latte",
       "Image": "",
-      "Price": "400₽",
+      "Price": "$4.44",
       "Description": "Based on green matcha tea, caffeine-free."
     },
     {
       "Name": "Salted Caramel Latte",
       "Image": "",
-      "Price": "390₽",
+      "Price": "$4.33",
       "Description": "Perfect combination of sweet caramel and sea salt."
     }
   ],
@@ -79,37 +79,37 @@ const coffeeMenu = {
     {
       "Name": "Classic Americano",
       "Image": "",
-      "Price": "250₽",
+      "Price": "$2.78",
       "Description": "Espresso with added hot water, strong and rich."
     },
     {
       "Name": "Lungo",
       "Image": "",
-      "Price": "260₽",
+      "Price": "$2.89",
       "Description": "Longer espresso extraction than classic."
     },
     {
       "Name": "Americano with Lemon",
       "Image": "",
-      "Price": "270₽",
+      "Price": "$3.00",
       "Description": "Refreshing option with a slice of lemon."
     },
     {
       "Name": "Iced Americano",
       "Image": "",
-      "Price": "280₽",
+      "Price": "$3.11",
       "Description": "Cold, invigorating, served with ice."
     },
     {
       "Name": "Americano with Tonic",
       "Image": "",
-      "Price": "300₽",
+      "Price": "$3.33",
       "Description": "Trendy option with chilled tonic water."
     },
     {
       "Name": "Americano with Syrup (Maple, Hazelnut)",
       "Image": "",
-      "Price": "290₽",
+      "Price": "$3.22",
       "Description": "With light sweetness and additional flavor."
     }
   ],
@@ -117,37 +117,37 @@ const coffeeMenu = {
     {
       "Name": "Espresso",
       "Image": "",
-      "Price": "200₽",
+      "Price": "$2.22",
       "Description": "Classic 30ml portion of strong coffee."
     },
     {
       "Name": "Doppio (Double Espresso)",
       "Image": "",
-      "Price": "280₽",
+      "Price": "$3.11",
       "Description": "Double portion for true connoisseurs."
     },
     {
       "Name": "Ristretto",
       "Image": "",
-      "Price": "220₽",
+      "Price": "$2.44",
       "Description": "More concentrated and sweeter than espresso."
     },
     {
       "Name": "Espresso Con Panna",
       "Image": "",
-      "Price": "260₽",
+      "Price": "$2.89",
       "Description": "Espresso topped with whipped cream."
     },
     {
       "Name": "Espresso Romano",
       "Image": "",
-      "Price": "230₽",
+      "Price": "$2.56",
       "Description": "With a slice or zest of lemon."
     },
     {
       "Name": "Espresso Macchiato",
       "Image": "",
-      "Price": "240₽",
+      "Price": "$2.67",
       "Description": "Espresso with a small cap of milk foam."
     }
   ],
@@ -155,37 +155,37 @@ const coffeeMenu = {
     {
       "Name": "Classic Flat White",
       "Image": "",
-      "Price": "340₽",
+      "Price": "$3.78",
       "Description": "Double ristretto with microfoam, creamy and rich."
     },
     {
       "Name": "Almond Milk Flat White",
       "Image": "",
-      "Price": "370₽",
+      "Price": "$4.11",
       "Description": "With nutty notes and velvety texture."
     },
     {
       "Name": "Ginger-Honey Flat White",
       "Image": "",
-      "Price": "380₽",
+      "Price": "$4.22",
       "Description": "With ginger syrup and honey."
     },
     {
       "Name": "Salted Caramel Flat White",
       "Image": "",
-      "Price": "380₽",
+      "Price": "$4.22",
       "Description": "Balance of coffee bitterness, sweetness and saltiness."
     },
     {
       "Name": "Cocoa Flat White",
       "Image": "",
-      "Price": "360₽",
+      "Price": "$4.00",
       "Description": "With a sprinkle of dark cocoa on delicate foam."
     },
     {
       "Name": "Flat White Freddo (Iced)",
       "Image": "",
-      "Price": "360₽",
+      "Price": "$4.00",
       "Description": "Cold version, blended with ice until smooth."
     }
   ]
@@ -197,6 +197,14 @@ const saveOrdersToStorage = () => {
   localStorage.setItem('coffeeOrders', JSON.stringify(orders));
 };
 
+const parsePrice = (priceString) => {
+  return parseFloat(priceString.replace('$', '').trim());
+};
+
+const formatPrice = (amount) => {
+  return `$${amount.toFixed(2)}`;
+};
+
 const calculatePrice = (basePrice, size) => {
   const priceMap = {
     'short': 0.9,
@@ -205,22 +213,26 @@ const calculatePrice = (basePrice, size) => {
     'venti': 1.3    
   };
   
-  const numericPrice = parseInt(basePrice.replace('₽', '').trim());
-  return Math.round(numericPrice * priceMap[size] || numericPrice);
+  const numericPrice = parsePrice(basePrice);
+  return numericPrice * (priceMap[size] || 1);
 };
 
 const calculateTotal = () => {
   let subtotal = 0;
   
   orders.forEach(order => {
-    const price = parseInt(order.price.replace('₽', '').trim());
+    const price = parsePrice(order.price);
     subtotal += price * order.quantity;
   });
   
-  const discount = Math.round(subtotal * 0.1);
+  const discount = subtotal * 0.1;
   const total = subtotal - discount;
   
-  return { subtotal, discount, total };
+  return { 
+    subtotal: formatPrice(subtotal), 
+    discount: formatPrice(discount), 
+    total: formatPrice(total) 
+  };
 };
 
 let cards =  document.querySelector(".cards");
@@ -313,15 +325,15 @@ const displayOrdersInStatus = () => {
     <div class="order-summary">
       <div class="price-row">
         <span>Subtotal:</span>
-        <span class="price-value">${subtotal}₽</span>
+        <span class="price-value">${subtotal}</span>
       </div>
       <div class="price-row discount">
         <span>First Order Discount (10%):</span>
-        <span class="price-value">-${discount}₽</span>
+        <span class="price-value">-${discount}</span>
       </div>
       <div class="price-row total">
         <span>Total:</span>
-        <span class="price-value">${total}₽</span>
+        <span class="price-value">${total}</span>
       </div>
       <button class="submit-order-btn" id="submitOrderBtn">SUBMIT ORDER</button>
     </div>
@@ -338,7 +350,6 @@ const submitOrder = () => {
   if (orders.length === 0) {
     return;
   }
-  
   
   orders = [];
   saveOrdersToStorage();
@@ -384,7 +395,7 @@ const showCoffeeDetail = (coffee) => {
   document.querySelector('.menuPage').classList.add('hidden');
   document.querySelector('.coffeeInfoPage').classList.remove('hidden');
   
-  const basePrice = parseInt(coffee.Price.replace('₽', '').trim());
+  const basePrice = parsePrice(coffee.Price);
   
   const imgAndInfo = document.querySelector('.imgAndInfo');
   imgAndInfo.innerHTML = `
@@ -395,27 +406,27 @@ const showCoffeeDetail = (coffee) => {
 
       <span>SIZE</span>
       <div class="size">
-        <button class="size-btn" data-size="short" data-price="${Math.round(basePrice * 0.9)}">Short</button>
-        <button class="size-btn" data-size="tall" data-price="${basePrice}">Tall</button>
-        <button class="size-btn" data-size="grande" data-price="${Math.round(basePrice * 1.15)}">Grande</button>
-        <button class="size-btn" data-size="venti" data-price="${Math.round(basePrice * 1.3)}">Venti</button>
+        <button class="size-btn" data-size="short" data-price="${(basePrice * 0.9).toFixed(2)}">Short</button>
+        <button class="size-btn" data-size="tall" data-price="${basePrice.toFixed(2)}">Tall</button>
+        <button class="size-btn" data-size="grande" data-price="${(basePrice * 1.15).toFixed(2)}">Grande</button>
+        <button class="size-btn" data-size="venti" data-price="${(basePrice * 1.3).toFixed(2)}">Venti</button>
       </div>
 
       <span>EXTRA</span>
       <div class="extra">
-        <button class="extra-btn" data-extra="sugar" data-price="30">SUGAR (+30₽)</button>
-        <button class="extra-btn" data-extra="milk" data-price="40">MILK (+40₽)</button>
+        <button class="extra-btn" data-extra="sugar" data-price="0.33">SUGAR (+$0.33)</button>
+        <button class="extra-btn" data-extra="milk" data-price="0.44">MILK (+$0.44)</button>
       </div>
 
       <span>MILK TYPE</span>
       <div class="milk">
-        <button class="milk-btn" data-milk="oat" data-price="50">OAT MILK (+50₽)</button>
-        <button class="milk-btn" data-milk="soy" data-price="40">SOY MILK (+40₽)</button>
-        <button class="milk-btn" data-milk="almond" data-price="60">ALMOND MILK (+60₽)</button>
+        <button class="milk-btn" data-milk="oat" data-price="0.56">OAT MILK (+$0.56)</button>
+        <button class="milk-btn" data-milk="soy" data-price="0.44">SOY MILK (+$0.44)</button>
+        <button class="milk-btn" data-milk="almond" data-price="0.67">ALMOND MILK (+$0.67)</button>
       </div>
 
       <div class="price-display">
-        <p>Price: <span id="currentPrice">${basePrice}</span>₽</p>
+        <p>Price: <span id="currentPrice">${basePrice.toFixed(2)}</span>$</p>
       </div>
 
       <button class="placeOrderBtn" id="placeOrderBtn">PLACE ORDER</button>
@@ -435,20 +446,20 @@ const showCoffeeDetail = (coffee) => {
     
     const selectedSize = document.querySelector('.size-btn.active');
     if (selectedSize) {
-      price = parseInt(selectedSize.getAttribute('data-price'));
+      price = parseFloat(selectedSize.getAttribute('data-price'));
     }
     
     document.querySelectorAll('.extra-btn.active').forEach(extra => {
-      price += parseInt(extra.getAttribute('data-price'));
+      price += parseFloat(extra.getAttribute('data-price'));
     });
     
     const selectedMilk = document.querySelector('.milk-btn.active');
     if (selectedMilk) {
-      price += parseInt(selectedMilk.getAttribute('data-price'));
+      price += parseFloat(selectedMilk.getAttribute('data-price'));
     }
     
-    document.getElementById('currentPrice').textContent = price;
-    document.getElementById('placeOrderBtn').setAttribute('data-final-price', price);
+    document.getElementById('currentPrice').textContent = price.toFixed(2);
+    document.getElementById('placeOrderBtn').setAttribute('data-final-price', price.toFixed(2));
   };
 
   document.querySelectorAll('.size-btn').forEach(btn => {
@@ -480,12 +491,12 @@ const showCoffeeDetail = (coffee) => {
   });
 
   document.getElementById('placeOrderBtn')?.addEventListener('click', () => {
-    const finalPrice = document.getElementById('placeOrderBtn').getAttribute('data-final-price') || basePrice;
+    const finalPrice = parseFloat(document.getElementById('placeOrderBtn').getAttribute('data-final-price')) || basePrice;
     const selectedSize = document.querySelector('.size-btn.active')?.getAttribute('data-size') || 'tall';
     
     const orderItem = {
       name: coffee.Name,
-      price: `${finalPrice}₽`,
+      price: formatPrice(finalPrice),
       quantity: 1,
       image: coffee.Image || 'img/coffee-placeholder.png',
       size: selectedSize
