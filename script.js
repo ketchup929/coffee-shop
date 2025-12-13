@@ -191,7 +191,11 @@ const coffeeMenu = {
   ]
 };
 
-let orders = [];
+let orders = JSON.parse(localStorage.getItem('coffeeOrders')) || [];
+
+const saveOrdersToStorage = () => {
+  localStorage.setItem('coffeeOrders', JSON.stringify(orders));
+};
 
 const calculatePrice = (basePrice, size) => {
   const priceMap = {
@@ -223,6 +227,7 @@ let cards =  document.querySelector(".cards");
 const orderStatusLink = document.querySelector(".ORDER-STATUS a");
 const counterElement = document.querySelector('.counter');
 const statusCounterElement = document.querySelector('.statusPage .counter');
+
 const showCards = (coffeeType = "Cappuccino") => {
   cards.innerHTML = "";
   coffeeMenu[coffeeType].forEach(item => {
@@ -257,27 +262,33 @@ const showCards = (coffeeType = "Cappuccino") => {
 };
 
 const addToOrder = (coffee) => {
-  const existingOrder = orders.find(order => order.name === coffee.name && order.price === coffee.price);
+  const coffeeName = coffee.Name || coffee.name;
+  const coffeePrice = coffee.Price || coffee.price;
+  
+  const existingOrder = orders.find(order => 
+    order.name === coffeeName && order.price === coffeePrice
+  );
   
   if (existingOrder) {
     existingOrder.quantity++; 
   } 
   else {
     orders.push({
-      name: coffee.name,
-      price: coffee.price,
+      name: coffeeName,
+      price: coffeePrice,
       quantity: 1,
-      image: coffee.image || 'img/coffee-placeholder.png',
+      image: coffee.Image || coffee.image || 'img/coffee-placeholder.png',
       size: coffee.size || 'tall'
     });
   }
   
+  saveOrdersToStorage();
   updateOrderCounter();
 
   if (!document.querySelector('.statusPage').classList.contains('hidden')) {
     displayOrdersInStatus();
   }
-}
+};
 
 const displayOrdersInStatus = () => {
   const statusContainer = document.querySelector('.imgAndInfoStatus');
@@ -312,10 +323,30 @@ const displayOrdersInStatus = () => {
         <span>Total:</span>
         <span class="price-value">${total}₽</span>
       </div>
+      <button class="submit-order-btn" id="submitOrderBtn">SUBMIT ORDER</button>
     </div>
   `;
   
   statusContainer.innerHTML = html;
+  
+  document.getElementById('submitOrderBtn')?.addEventListener('click', () => {
+    submitOrder();
+  });
+};
+
+const submitOrder = () => {
+  if (orders.length === 0) {
+    return;
+  }
+  
+  
+  orders = [];
+  saveOrdersToStorage();
+  updateOrderCounter();
+  displayOrdersInStatus();
+  
+  document.querySelector('.overlay').classList.add('hidden');
+  document.querySelector('.statusPage').classList.add('hidden');
 };
 
 const updateOrderCounter = () => {
@@ -345,7 +376,9 @@ const updateOrderCounter = () => {
       `You have ${totalItems} item(s) in order` : 
       "No active order yet.";
   }
-}
+};
+
+updateOrderCounter();
 
 const showCoffeeDetail = (coffee) => {
   document.querySelector('.menuPage').classList.add('hidden');
@@ -355,7 +388,7 @@ const showCoffeeDetail = (coffee) => {
   
   const imgAndInfo = document.querySelector('.imgAndInfo');
   imgAndInfo.innerHTML = `
-    <img src="${coffee.Image}" alt="${coffee.Name}">
+    <img src="${coffee.Image || 'img/coffee-placeholder.png'}" alt="${coffee.Name}">
     <div class="infoAboutCoffee">
       <p class="nameOfCoffee">${coffee.Name}</p>
       <p class="descriptionOfCoffee">${coffee.Description}</p>
@@ -392,14 +425,17 @@ const showCoffeeDetail = (coffee) => {
     </div>
   `;
 
+  const tallBtn = imgAndInfo.querySelector('.size-btn[data-size="tall"]');
+  if (tallBtn) {
+    tallBtn.classList.add('active');
+  }
+
   const updatePrice = () => {
     let price = basePrice;
-    let priceText = `${basePrice}₽`;
     
     const selectedSize = document.querySelector('.size-btn.active');
     if (selectedSize) {
       price = parseInt(selectedSize.getAttribute('data-price'));
-      priceText = `${price}₽`;
     }
     
     document.querySelectorAll('.extra-btn.active').forEach(extra => {
@@ -412,7 +448,6 @@ const showCoffeeDetail = (coffee) => {
     }
     
     document.getElementById('currentPrice').textContent = price;
-    
     document.getElementById('placeOrderBtn').setAttribute('data-final-price', price);
   };
 
@@ -446,18 +481,21 @@ const showCoffeeDetail = (coffee) => {
 
   document.getElementById('placeOrderBtn')?.addEventListener('click', () => {
     const finalPrice = document.getElementById('placeOrderBtn').getAttribute('data-final-price') || basePrice;
+    const selectedSize = document.querySelector('.size-btn.active')?.getAttribute('data-size') || 'tall';
     
     const orderItem = {
       name: coffee.Name,
       price: `${finalPrice}₽`,
       quantity: 1,
       image: coffee.Image || 'img/coffee-placeholder.png',
-      size: document.querySelector('.size-btn.active')?.getAttribute('data-size') || 'tall'
+      size: selectedSize
     };
     
     addToOrder(orderItem);
     showOrderStatus();
   });
+
+  updatePrice();
 };
 
 function showOrderStatus() {
@@ -535,6 +573,12 @@ downButton.addEventListener('click', () => {
   let newIndex = currentActiveIndex + 1;
   if (newIndex >= slideButtons.length) newIndex = 0;
   activateButton(newIndex);
+});
+
+document.getElementById('hideStatusBtn')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.querySelector('.overlay').classList.add('hidden');
+  document.querySelector('.statusPage').classList.add('hidden');
 });
 
 activateButton(0);
