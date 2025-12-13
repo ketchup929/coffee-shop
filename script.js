@@ -2,37 +2,37 @@ const coffeeMenu = {
   "Cappuccino": [
     {
       "Name": "Classic Cappuccino",
-      "Image": "",
+      "Image": "https://i.pinimg.com/originals/41/4f/f9/414ff93ac84e212b5c5517653dc44f96.png?nii=t",
       "Price": "$3.56",
       "Description": "Perfect balance of espresso, milk and milk foam."
     },
     {
       "Name": "Coconut Milk Cappuccino",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=52ccae99d655dd7862165f02e54a767c_l-3710093-images-thumbs&n=13",
       "Price": "$4.22",
       "Description": "Lactose-free option with a light tropical aftertaste."
     },
     {
       "Name": "Vanilla Cappuccino",
-      "Image": "",
+      "Image": "https://i.pinimg.com/736x/3a/6d/7e/3a6d7ee7f98fb9665824587376a41994.jpg",
       "Price": "$3.89",
       "Description": "With natural vanilla syrup."
     },
     {
       "Name": "Chocolate Cappuccino (Mochaccino)",
-      "Image": "",
+      "Image": "https://i.pinimg.com/736x/90/88/26/908826e8cfa9094b3ca73144c82c782f.jpg",
       "Price": "$4.11",
       "Description": "With dark chocolate or cocoa."
     },
     {
       "Name": "Cinnamon & Cardamom Cappuccino",
-      "Image": "",
+      "Image": "https://i.pinimg.com/736x/3e/97/cf/3e97cfb2c35bfbd53c3bc9a345217e53.jpg",
       "Price": "$3.78",
       "Description": "Warming drink with spicy notes."
     },
     {
       "Name": "Cappuccino Freddo (Iced)",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=e03ecd0c825cb4410744c82052398721f9cdbcca-5883235-images-thumbs&n=13",
       "Price": "$4.00",
       "Description": "Cold version with ice and airy foam."
     }
@@ -40,37 +40,37 @@ const coffeeMenu = {
   "Latte": [
     {
       "Name": "Classic Latte",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=8c904b3a91bf067b8d76201a27cacd9a095fa561-5880141-images-thumbs&n=13",
       "Price": "$3.89",
       "Description": "Gentle coffee with lots of frothed milk."
     },
     {
       "Name": "Oat Milk Latte",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=f8dfabbb69698f4aa8396dc46caef641289a90b377a43ee1-5897487-images-thumbs&n=13",
       "Price": "$4.22",
       "Description": "Plant-based alternative with creamy texture."
     },
     {
       "Name": "Caramel Latte",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=0ed825842be770d2d1f4ce473d6d59766511b229-5300806-images-thumbs&n=13",
       "Price": "$4.33",
       "Description": "Sweet drink with caramel syrup and foam art."
     },
     {
       "Name": "Lavender Latte",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=ca91062cb66e91f829d0a8200f05d7d6283290f6-5240131-images-thumbs&n=13",
       "Price": "$4.11",
       "Description": "With floral lavender notes, calming and aromatic."
     },
     {
       "Name": "Matcha Latte",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=217e83cb3aee804b278e5a2493b7ff4bd8d5d69a-15586103-images-thumbs&n=13",
       "Price": "$4.44",
       "Description": "Based on green matcha tea, caffeine-free."
     },
     {
       "Name": "Salted Caramel Latte",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=962f1769184a75f0d65c8e4522e2a47a9381096c-5241083-images-thumbs&n=13",
       "Price": "$4.33",
       "Description": "Perfect combination of sweet caramel and sea salt."
     }
@@ -78,75 +78,75 @@ const coffeeMenu = {
   "Americano": [
     {
       "Name": "Classic Americano",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=2e95e1d00563dc463228ffb0f623dc6ac793ae90-5859525-images-thumbs&n=13",
       "Price": "$2.78",
       "Description": "Espresso with added hot water, strong and rich."
     },
     {
       "Name": "Lungo",
-      "Image": "",
+      "Image": "https://img.kavosdraugas.lt/bb3268c6-285b-4e23-96b9-f8cd78cf7460/1000x1000/dg-lungo-megapack-cupjpg.jpg",
       "Price": "$2.89",
       "Description": "Longer espresso extraction than classic."
     },
     {
       "Name": "Americano with Lemon",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=8ef5d950793cf9150646b252591c7cd34392faeb-4011753-images-thumbs&n=13",
       "Price": "$3.00",
       "Description": "Refreshing option with a slice of lemon."
     },
     {
       "Name": "Iced Americano",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=fc008ba79d9e466d52b4fe3b216c7eb29262f0a8-10918338-images-thumbs&n=13",
       "Price": "$3.11",
       "Description": "Cold, invigorating, served with ice."
     },
     {
       "Name": "Americano with Tonic",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=070cfa35843575cde4f10f65d5ac94e5d242fbdc-5433983-images-thumbs&n=13",
       "Price": "$3.33",
       "Description": "Trendy option with chilled tonic water."
     },
     {
-      "Name": "Americano with Syrup (Maple, Hazelnut)",
-      "Image": "",
+      "Name": "Americano Misto",
+      "Image": "https://avatars.mds.yandex.net/i?id=c0eb98234db52b4b354a11fe1d550942b0374fc0-5279811-images-thumbs&n=13",
       "Price": "$3.22",
-      "Description": "With light sweetness and additional flavor."
+      "Description": "A smooth blend of Americano and steamed milk."
     }
   ],
   "Espresso": [
     {
       "Name": "Espresso",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=4195d247913691d3697a4b57ae14cd2f046a9632-4809555-images-thumbs&n=13",
       "Price": "$2.22",
       "Description": "Classic 30ml portion of strong coffee."
     },
     {
       "Name": "Doppio (Double Espresso)",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=cec2096e3438cbf43e2640fd604fe9920ed18381-5544858-images-thumbs&n=13",
       "Price": "$3.11",
       "Description": "Double portion for true connoisseurs."
     },
     {
       "Name": "Ristretto",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=724caf3d17da97c674ad786bf773edf4d4c71cc7-5875897-images-thumbs&n=13",
       "Price": "$2.44",
       "Description": "More concentrated and sweeter than espresso."
     },
     {
       "Name": "Espresso Con Panna",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=e2fbc1de90778477f4930766b2eab79b7fce44c2-4442360-images-thumbs&n=13",
       "Price": "$2.89",
       "Description": "Espresso topped with whipped cream."
     },
     {
       "Name": "Espresso Romano",
-      "Image": "",
+      "Image": "https://i.pinimg.com/736x/bb/36/45/bb36453d9573dd3872ac8bcebbe0b2a6.jpg",
       "Price": "$2.56",
       "Description": "With a slice or zest of lemon."
     },
     {
       "Name": "Espresso Macchiato",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=a00e435960f611146d57adee750946dd225792c6d228b44b-10153545-images-thumbs&n=13",
       "Price": "$2.67",
       "Description": "Espresso with a small cap of milk foam."
     }
@@ -154,37 +154,37 @@ const coffeeMenu = {
   "Flat White": [
     {
       "Name": "Classic Flat White",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=f188b9b079151feb0de50bca79e25888d06c9ebd-5247511-images-thumbs&n=13",
       "Price": "$3.78",
       "Description": "Double ristretto with microfoam, creamy and rich."
     },
     {
       "Name": "Almond Milk Flat White",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=66ab0ad556771c09a80f1ec2cf8d768fd1448a04-12486332-images-thumbs&n=13",
       "Price": "$4.11",
       "Description": "With nutty notes and velvety texture."
     },
     {
       "Name": "Ginger-Honey Flat White",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=1822c6ee3b84bc5835b1da23229254f79cdc530f-4592636-images-thumbs&n=13",
       "Price": "$4.22",
       "Description": "With ginger syrup and honey."
     },
     {
       "Name": "Salted Caramel Flat White",
-      "Image": "",
+      "Image": "https://i.pinimg.com/736x/3e/0c/5c/3e0c5c8d9c10762c81909ce87867a1bc.jpg",
       "Price": "$4.22",
       "Description": "Balance of coffee bitterness, sweetness and saltiness."
     },
     {
       "Name": "Cocoa Flat White",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=2a00000179feb02238f164da5424d1898baf-3521501-images-thumbs&n=13",
       "Price": "$4.00",
       "Description": "With a sprinkle of dark cocoa on delicate foam."
     },
     {
       "Name": "Flat White Freddo (Iced)",
-      "Image": "",
+      "Image": "https://avatars.mds.yandex.net/i?id=0bc8f6b900a996cfb5ec0447e39c33181e80c5c5-9855103-images-thumbs&n=13",
       "Price": "$4.00",
       "Description": "Cold version, blended with ice until smooth."
     }
