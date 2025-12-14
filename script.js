@@ -327,7 +327,6 @@ const calculateTotal = () => {
 let cards =  document.querySelector(".cards");
 const orderStatusLink = document.querySelector(".ORDER-STATUS a");
 const counterElement = document.querySelector('.counter');
-const statusCounterElement = document.querySelector('.statusPage .counter');
 
 const showCards = (coffeeType = "Cappuccino") => {
   cards.innerHTML = "";
@@ -362,24 +361,33 @@ const showCards = (coffeeType = "Cappuccino") => {
   });
 };
 
-const addToOrder = (coffee) => {
-  const coffeeName = coffee.Name || coffee.name;
-  const coffeePrice = coffee.Price || coffee.price;
+const addToOrder = (orderItem) => {
+  const coffeeName = orderItem.name;
+  const coffeePrice = orderItem.price;
+  const orderQuantity = orderItem.quantity || 1;
   
   const existingOrder = orders.find(order => 
-    order.name === coffeeName && order.price === coffeePrice
+    order.name === coffeeName && 
+    order.price === coffeePrice &&
+    order.size === orderItem.size &&
+    JSON.stringify(order.extras) === JSON.stringify(orderItem.extras) &&
+    order.milk === orderItem.milk
   );
   
   if (existingOrder) {
-    existingOrder.quantity++; 
-  } 
+    existingOrder.quantity += orderQuantity;
+    existingOrder.totalPrice = formatPrice(parsePrice(existingOrder.price) * existingOrder.quantity);
+  }
   else {
     orders.push({
       name: coffeeName,
       price: coffeePrice,
-      quantity: 1,
-      image: coffee.Image || coffee.image || 'img/coffee-placeholder.png',
-      size: coffee.size || 'tall'
+      quantity: orderQuantity,
+      image: orderItem.image,
+      size: orderItem.size,
+      extras: orderItem.extras || [],
+      milk: orderItem.milk || 'regular',
+      totalPrice: formatPrice(parsePrice(coffeePrice) * orderQuantity)
     });
   }
   
@@ -403,9 +411,10 @@ const displayOrdersInStatus = () => {
   
   let html = '<h3>Your Order:</h3>';
   orders.forEach(order => {
+    const itemTotal = formatPrice(parsePrice(order.price) * order.quantity);
     html += `
       <div class="order-item">
-        <p>${order.name} x${order.quantity} - ${order.price}</p>
+        <p><strong>${order.name}</strong> x${order.quantity} - ${itemTotal}</p>
       </div>
     `;
   });
@@ -470,12 +479,6 @@ const updateOrderCounter = () => {
     }
   }
   
-  const statusCounter = document.querySelector('.statusPage .counter');
-  if (statusCounter) {
-    statusCounter.textContent = totalItems > 0 ? 
-      `You have ${totalItems} item(s) in order` : 
-      "No active order yet.";
-  }
 };
 
 updateOrderCounter();
@@ -485,6 +488,7 @@ const showCoffeeDetail = (coffee) => {
   document.querySelector('.coffeeInfoPage').classList.remove('hidden');
   
   const basePrice = parsePrice(coffee.Price);
+  let quantity = 1;
   
   const imgAndInfo = document.querySelector('.imgAndInfo');
   imgAndInfo.innerHTML = `
@@ -495,11 +499,43 @@ const showCoffeeDetail = (coffee) => {
 
       <span>SIZE</span>
       <div class="size">
-        <button class="size-btn" data-size="short" data-price="${(basePrice * 0.9).toFixed(2)}">Short</button>
-        <button class="size-btn" data-size="tall" data-price="${basePrice.toFixed(2)}">Tall</button>
-        <button class="size-btn" data-size="grande" data-price="${(basePrice * 1.15).toFixed(2)}">Grande</button>
-        <button class="size-btn" data-size="venti" data-price="${(basePrice * 1.3).toFixed(2)}">Venti</button>
-      </div>
+  <button class="size-btn" data-size="short" data-price="${(basePrice * 0.9).toFixed(2)}">
+    <div class="size-content">
+      <svg width="28" height="65" viewBox="0 0 58 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.8889 65H45.1111C45.8865 65.0001 46.6359 64.7182 47.2219 64.206C47.8078 63.6938 48.191 62.9856 48.3011 62.2115L54.3492 19.5H58V13H53.5469L47.9918 1.79725C47.725 1.25701 47.314 0.802582 46.8051 0.485074C46.2962 0.167565 45.7095 -0.000424452 45.1111 8.05387e-07H12.8889C11.6677 8.05387e-07 10.5528 0.695501 10.005 1.79725L4.45311 13H0V19.5H3.65078L9.69889 62.2115C9.809 62.9856 10.1922 63.6938 10.7781 64.206C11.3641 64.7182 12.1135 65.0001 12.8889 65ZM46.458 29.25H11.542L10.1597 19.5H47.8371L46.458 29.25ZM15.6826 58.5L14.3002 48.75H43.6966L42.3142 58.5H15.6826ZM14.8802 6.5H43.1198L46.342 13H11.658L14.8802 6.5Z" fill="#AC8F64"/>
+      </svg>
+      <span>Short</span>
+    </div>
+  </button>
+  
+  <button class="size-btn" data-size="tall" data-price="${basePrice.toFixed(2)}">
+    <div class="size-content">
+      <svg width="38" height="65" viewBox="0 0 58 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.8889 65H45.1111C45.8865 65.0001 46.6359 64.7182 47.2219 64.206C47.8078 63.6938 48.191 62.9856 48.3011 62.2115L54.3492 19.5H58V13H53.5469L47.9918 1.79725C47.725 1.25701 47.314 0.802582 46.8051 0.485074C46.2962 0.167565 45.7095 -0.000424452 45.1111 8.05387e-07H12.8889C11.6677 8.05387e-07 10.5528 0.695501 10.005 1.79725L4.45311 13H0V19.5H3.65078L9.69889 62.2115C9.809 62.9856 10.1922 63.6938 10.7781 64.206C11.3641 64.7182 12.1135 65.0001 12.8889 65ZM46.458 29.25H11.542L10.1597 19.5H47.8371L46.458 29.25ZM15.6826 58.5L14.3002 48.75H43.6966L42.3142 58.5H15.6826ZM14.8802 6.5H43.1198L46.342 13H11.658L14.8802 6.5Z" fill="#AC8F64"/>
+      </svg>
+      <span>Tall</span>
+    </div>
+  </button>
+  
+  <button class="size-btn" data-size="grande" data-price="${(basePrice * 1.15).toFixed(2)}">
+    <div class="size-content">
+      <svg width="48" height="65" viewBox="0 0 58 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.8889 65H45.1111C45.8865 65.0001 46.6359 64.7182 47.2219 64.206C47.8078 63.6938 48.191 62.9856 48.3011 62.2115L54.3492 19.5H58V13H53.5469L47.9918 1.79725C47.725 1.25701 47.314 0.802582 46.8051 0.485074C46.2962 0.167565 45.7095 -0.000424452 45.1111 8.05387e-07H12.8889C11.6677 8.05387e-07 10.5528 0.695501 10.005 1.79725L4.45311 13H0V19.5H3.65078L9.69889 62.2115C9.809 62.9856 10.1922 63.6938 10.7781 64.206C11.3641 64.7182 12.1135 65.0001 12.8889 65ZM46.458 29.25H11.542L10.1597 19.5H47.8371L46.458 29.25ZM15.6826 58.5L14.3002 48.75H43.6966L42.3142 58.5H15.6826ZM14.8802 6.5H43.1198L46.342 13H11.658L14.8802 6.5Z" fill="#AC8F64"/>
+      </svg>
+      <span>Grande</span>
+    </div>
+  </button>
+  
+  <button class="size-btn" data-size="venti" data-price="${(basePrice * 1.3).toFixed(2)}">
+    <div class="size-content">
+      <svg width="58" height="65" viewBox="0 0 58 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12.8889 65H45.1111C45.8865 65.0001 46.6359 64.7182 47.2219 64.206C47.8078 63.6938 48.191 62.9856 48.3011 62.2115L54.3492 19.5H58V13H53.5469L47.9918 1.79725C47.725 1.25701 47.314 0.802582 46.8051 0.485074C46.2962 0.167565 45.7095 -0.000424452 45.1111 8.05387e-07H12.8889C11.6677 8.05387e-07 10.5528 0.695501 10.005 1.79725L4.45311 13H0V19.5H3.65078L9.69889 62.2115C9.809 62.9856 10.1922 63.6938 10.7781 64.206C11.3641 64.7182 12.1135 65.0001 12.8889 65ZM46.458 29.25H11.542L10.1597 19.5H47.8371L46.458 29.25ZM15.6826 58.5L14.3002 48.75H43.6966L42.3142 58.5H15.6826ZM14.8802 6.5H43.1198L46.342 13H11.658L14.8802 6.5Z" fill="#AC8F64"/>
+      </svg>
+      <span>Venti</span>
+    </div>
+  </button>
+</div>
+
 
       <span>EXTRA</span>
       <div class="extra">
@@ -514,16 +550,23 @@ const showCoffeeDetail = (coffee) => {
         <button class="milk-btn" data-milk="almond" data-price="0.67">ALMOND MILK (+$0.67)</button>
       </div>
 
+      <div class="quantity-controls">
+    <button class="quantity-btn" id="decreaseQuantity">-</button>
+    <span class="quantity-display" id="quantityDisplay">1</span>
+    <button class="quantity-btn" id="increaseQuantity">+</button>
+</div>
+
       <div class="price-display">
         <p>Price: <span id="currentPrice">${basePrice.toFixed(2)}</span>$</p>
       </div>
 
       <button class="placeOrderBtn" id="placeOrderBtn">PLACE ORDER</button>
-      <div class="view-order-status-link">
-        <a href="#" id="viewOrderStatusLink">VIEW ORDER STATUS →</a>
-      </div>
     </div>
   `;
+
+  const quantityDisplay = document.getElementById('quantityDisplay');
+  const decreaseBtn = document.getElementById('decreaseQuantity');
+  const increaseBtn = document.getElementById('increaseQuantity');
 
   const tallBtn = imgAndInfo.querySelector('.size-btn[data-size="tall"]');
   if (tallBtn) {
@@ -546,10 +589,30 @@ const showCoffeeDetail = (coffee) => {
     if (selectedMilk) {
       price += parseFloat(selectedMilk.getAttribute('data-price'));
     }
+
+    const currentQuantity = parseInt(quantityDisplay.textContent) || 1;
+    const totalPrice = price * currentQuantity;
     
     document.getElementById('currentPrice').textContent = price.toFixed(2);
     document.getElementById('placeOrderBtn').setAttribute('data-final-price', price.toFixed(2));
   };
+
+  const updateQuantityDisplay = () => {
+    quantityDisplay.textContent = quantity;
+    updatePrice();
+  };
+
+  decreaseBtn?.addEventListener('click', () => {
+    if (quantity > 1) {
+      quantity--;
+      updateQuantityDisplay();
+    }
+  });
+
+  increaseBtn?.addEventListener('click', () => {
+    quantity++;
+    updateQuantityDisplay();
+  });
 
   document.querySelectorAll('.size-btn').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -574,28 +637,45 @@ const showCoffeeDetail = (coffee) => {
     });
   });
 
-  document.getElementById('viewOrderStatusLink')?.addEventListener('click', (e) => {
-    e.preventDefault();
-    showOrderStatus();
+  orderStatusLink?.addEventListener('click', (e) => {
+  e.preventDefault();
+  showOrderStatus();
   });
 
   document.getElementById('placeOrderBtn')?.addEventListener('click', () => {
     const finalPrice = parseFloat(document.getElementById('placeOrderBtn').getAttribute('data-final-price')) || basePrice;
     const selectedSize = document.querySelector('.size-btn.active')?.getAttribute('data-size') || 'tall';
     
+    const quantity = parseInt(document.getElementById('quantityDisplay').textContent) || 1;
+  
+    const selectedExtras = [];
+    document.querySelectorAll('.extra-btn.active').forEach(extra => {
+      selectedExtras.push(extra.getAttribute('data-extra'));
+    });
+    
+    const selectedMilk = document.querySelector('.milk-btn.active')?.getAttribute('data-milk') || 'regular';
+
     const orderItem = {
       name: coffee.Name,
       price: formatPrice(finalPrice),
-      quantity: 1,
-      image: coffee.Image || 'img/coffee-placeholder.png',
-      size: selectedSize
+      quantity: quantity,
+      image: coffee.Image,
+      size: selectedSize,
+      extras: selectedExtras,
+      milk: selectedMilk,
+      totalPrice: formatPrice(finalPrice * quantity)
     };
     
     addToOrder(orderItem);
     showOrderStatus();
   });
 
-  updatePrice();
+  document.querySelector('.coffeeInfoPage .ORDER-STATUS a')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    showOrderStatus();
+  });
+
+  updateQuantityDisplay();
 };
 
 function showOrderStatus() {
@@ -606,14 +686,7 @@ function showOrderStatus() {
   for (const order of orders) {
     totalItems += order.quantity;
   }
-  const statusInfo = document.querySelector('.statusPage .counter');
   
-  if (totalItems > 0) {
-    statusInfo.textContent = `You have ${totalItems} item(s) in order`;
-  } else {
-    statusInfo.textContent = "No active order yet.";
-  }
-
   displayOrdersInStatus();
 }
 
@@ -680,7 +753,5 @@ document.getElementById('hideStatusBtn')?.addEventListener('click', (e) => {
   document.querySelector('.overlay').classList.add('hidden');
   document.querySelector('.statusPage').classList.add('hidden');
 });
-
-
 
 activateButton(0);
