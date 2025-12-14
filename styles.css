@@ -489,3 +489,31 @@ body {
 .price-value {
     font-weight: bold;
 }
+
+
+
+footer {
+    background-color: #AC8F64;
+    color: #F6F6F6;
+    padding: 25px 20px;
+    margin-top: 40px;
+    text-align: center;
+    border-top: 4px solid #483431;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+footer p {
+    margin: 12px 0;
+    line-height: 1.5;
+    color: #F6F6F6;
+}
+
+footer p a {
+    margin: 0 12px;
+}
+
+footer img {
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+}
