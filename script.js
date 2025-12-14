@@ -192,6 +192,95 @@ const coffeeMenu = {
 };
 
 let orders = JSON.parse(localStorage.getItem('coffeeOrders')) || [];
+let allCoffeeItems = [];
+
+const initializeAllCoffeeItems = () => {
+  allCoffeeItems = [];
+  Object.keys(coffeeMenu).forEach(coffeeType => {
+    coffeeMenu[coffeeType].forEach(item => {
+      allCoffeeItems.push({
+        ...item,
+        type: coffeeType
+      });
+    });
+  });
+};
+
+initializeAllCoffeeItems();
+
+const filterCardsBySearch = (searchTerm) => {
+  if (!searchTerm || searchTerm.trim() === '') {
+    const activeButton = document.querySelector('.slide button.active');
+    if (activeButton) {
+      showCards(activeButton.textContent);
+    }
+    return;
+  }
+  
+  const searchTermLower = searchTerm.toLowerCase().trim();
+  
+  const filteredItems = allCoffeeItems.filter(item => {
+    return (
+      item.Name.toLowerCase().includes(searchTermLower) ||
+      item.Description.toLowerCase().includes(searchTermLower) ||
+      item.type.toLowerCase().includes(searchTermLower)
+    );
+  });
+  
+  showFilteredCards(filteredItems, searchTerm);
+};
+
+const showFilteredCards = (filteredItems, searchTerm) => {
+  cards.innerHTML = "";
+  
+  if (filteredItems.length === 0) {
+    cards.innerHTML = `
+      <div class="no-results">
+        <p>No coffee found for "${searchTerm}"</p>
+      </div>
+    `;
+    return;
+  }
+  
+  filteredItems.forEach(item => {
+    cards.innerHTML += `
+      <div class="card" data-coffee='${JSON.stringify(item)}'>
+        <div class="card-image"><img src="${item.Image || 'img/coffee-placeholder.png'}" alt="${item.Name}"></div>
+        <div class="card-content">
+          <h3>${item.Name}</h3>
+          <div class="card-footer">
+            <span class="price">${item.Price}</span>
+            <button class="add-btn">+</button>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  document.querySelectorAll('.card').forEach(card => {
+    const coffeeData = JSON.parse(card.getAttribute('data-coffee'));
+    
+    card.addEventListener('click', (e) => {
+      if (!e.target.classList.contains('add-btn')) {
+        showCoffeeDetail(coffeeData);
+      }
+    });
+    
+    const addBtn = card.querySelector('.add-btn');
+    addBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      addToOrder(coffeeData);
+    });
+  });
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.querySelector('.browse');
+  
+  searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value;
+    filterCardsBySearch(searchTerm);
+  });
+});
 
 const saveOrdersToStorage = () => {
   localStorage.setItem('coffeeOrders', JSON.stringify(orders));
@@ -591,5 +680,7 @@ document.getElementById('hideStatusBtn')?.addEventListener('click', (e) => {
   document.querySelector('.overlay').classList.add('hidden');
   document.querySelector('.statusPage').classList.add('hidden');
 });
+
+
 
 activateButton(0);
