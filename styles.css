@@ -1,519 +1,567 @@
 body {
-    background-color: #F6F6F6;
+  background-color: #F6F6F6;
 }
 
 .browse {
-    background-color: #DADADA;
-    padding: 10px 30px;
-    margin-left: 20px;
-    width: 750px;
-    height: 40px;
-    border-radius: 40px;
-    border: 0px;
-    font-size: 20px;
-    font-family: 'Times New Roman', Times, serif;
-    border: 3px solid transparent;
+  background-color: #DADADA;
+  padding: 10px 30px;
+  margin-left: 20px;
+  width: 750px;
+  height: 40px;
+  border-radius: 40px;
+  border: 0px;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  border: 3px solid transparent;
 }
 
 .browse:hover {
-    border-color: #acacac;
+  border-color: #acacac;
 }
 
 .menuPage {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 20px;
 }
 
 .inputAndStatusAndCards {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .inputAndStatus {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
 .status {
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
-    position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  position: relative;
 }
 
-.picture {
-    position: relative;
-    cursor: pointer;
+.status-header .status {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.circle, .ring-ring {
-    position: absolute;
-}
-
-.ring-ring {
-    margin-left: 29px;
-    margin-top: 30px;
+.coffeeInfoHeader .status {
+  margin-left: auto;
 }
 
 .slider {
-    position: relative;
-    background-color: #FFFFFF;
-    width: 250px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0, 0.2);
-    max-height: 620px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
+  position: relative;
+  background-color: #FFFFFF;
+  width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0, 0.2);
+  max-height: 620px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .slides {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .slide {
-    width: 100%;
+  width: 100%;
 }
 
 .slide button {
-    width: 100%;
-    height: 100px;
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+  width: 100%;
+  height: 100px;
+  border: none;
+  background-color: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .slide button:hover,
 .slide button.active {
-    background-color: #AC8F64;
-    color: white;
-    border: 1px solid #8B7355;
+  background-color: #AC8F64;
+  color: white;
+  border: 1px solid #8B7355;
 }
 
 .up, .down {
-    color: rgb(167, 167, 167);
-    width: 30px;
-    height: 30px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    width: 100%;
-    border: 3px solid transparent;
+  color: rgb(167, 167, 167);
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  border: 3px solid transparent;
 }
 
 .up:hover, .down:hover {
-    border-color: rgb(167, 167, 167);
+  border-color: rgb(167, 167, 167);
 }
 
 .cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 40px;
-    padding: 0 20px;
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 40px;
+  padding: 0 20px;
+  width: 100%;
+  height: 100%;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    width: 250px;
-    border: 4px solid transparent;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 250px;
+  border: 4px solid transparent;
+  cursor: pointer;
 }
 
 .card:hover {
-    border-color: #AC8F64;
+  border-color: #AC8F64;
 }
 
 .card-image {
-    width: 100%;
-    height: 250px;
-    background: #DADADA;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 48px;
-    color: #AC8F64;
-    margin-bottom: 15px;
-    overflow: hidden;
+  width: 100%;
+  height: 250px;
+  background: #DADADA;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #AC8F64;
+  margin-bottom: 15px;
+  overflow: hidden;
 }
 
 .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 .card-content {
-    position: relative;
-    padding-bottom: 60px;
+  position: relative;
+  padding-bottom: 60px;
 }
 
 .card-content h3 {
-    color: #483431;
+  color: #483431;
 }
 
 .card-footer {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    padding-left: 4px;
-    background-color: #DADADA;
-    width: 78px;
-    border-radius: 9px;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  background-color: #DADADA;
+  width: 78px;
+  border-radius: 9px;
 }
 
 .price {
-    font-weight: bold;
-    color: #AC8F64;
-    font-size: 18px;
+  font-weight: bold;
+  color: #AC8F64;
+  font-size: 18px;
 }
 
 .add-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 10px;
-    border: 2px solid #AC8F64;
-    background: #CD4126CC;
-    color: #AC8F64;
-    font-size: 20px;
-    cursor: pointer;
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+  border: 2px solid #AC8F64;
+  background: #CD4126CC;
+  color: #AC8F64;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .add-btn:hover {
-    background: #AC8F64;
-    color: white;
+  background: #AC8F64;
+  color: white;
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .statusPage {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 350px;
-    height: 100vh;
-    background: white;
-    padding: 20px;
-    box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-    overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background: white;
+  padding: 20px;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
 
 .coffeeInfoPage {
-    padding: 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    background: white;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+}
+
+.imgAndInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: center; 
+  margin: 0 auto; 
+  max-width: 900px; 
 }
 
 .imgAndInfo img {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    margin-right: 30px;
-    border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
 }
 
 .nameOfCoffee {
-    font-size: 28px;
-    font-weight: bold;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .descriptionOfCoffee {
-    margin: 15px 0;
+  margin: 15px 0;
 }
 
 .order-count {
-    background-color: #CD4126;
-    color: white;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: bold;
-    margin-left: 10px;
+  background-color: #CD4126;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
 }
 
 .size-btn, .extra-btn, .milk-btn {
-    padding: 8px 15px;
-    border: 2px solid #DADADA;
-    background: white;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 8px 15px;
+  border: 2px solid #DADADA;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .size-btn:hover, .extra-btn:hover, .milk-btn:hover {
-    border-color: #AC8F64;
+  border-color: #AC8F64;
 }
 
 .size-btn.active, .extra-btn.active, .milk-btn.active {
-    background-color: #AC8F64;
-    color: white;
-    border-color: #8B7355;
+  background-color: #AC8F64;
+  color: white;
+  border-color: #8B7355;
 }
 
 .size, .extra, .milk {
-    display: flex;
-    gap: 10px;
-    margin: 10px 0 20px 0;
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 20px 0;
 }
 
 .placeOrderBtn, .viewOrderBtn, .addToOrderBtn {
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
-    color: white;
-    margin-top: 10px;
-    padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  color: white;
+  margin-top: 10px;
+  padding: 10px 20px;
 }
 
 .addToOrderBtn {
-    background: #AC8F64;
+  background: #AC8F64;
 }
 
 .addToOrderBtn:hover {
-    background: #8B7355;
+  background: #8B7355;
 }
 
 .viewOrderBtn {
-    background: #AC8F64;
+  background: #AC8F64;
 }
 
 .viewOrderBtn:hover {
-    background: #8B7355;
+  background: #8B7355;
 }
 
 .placeOrderBtn {
-    background: #CD4126;
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
-    padding: 12px 20px;
+  background: #CD4126;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 12px 20px;
 }
 
 .placeOrderBtn:hover {
-    background: #B03A22;
+  background: #B03A22;
+}
+
+.ORDER-STATUS {
+  display: flex;
+  align-items: center;
+  margin-left: -40px;
 }
 
 .ORDER-STATUS a,
 #backToMenuFromCoffee,
 #backToMenuFromStatus {
-    text-decoration: none;
-    color: #483431;
-    font-weight: bold;
-    cursor: pointer;
+  text-decoration: none;
+  color: #483431;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .ORDER-STATUS a:hover,
 #backToMenuFromCoffee:hover,
 #backToMenuFromStatus:hover {
-    color: #CD4126;
+  color: #CD4126;
 }
 
 .statusPage .imgAndInfoStatus {
-    margin-top: 20px;
-    padding: 15px;
-    background: #F6F6F6;
-    border-radius: 8px;
+  margin-top: 20px;
+  padding: 15px;
+  background: #F6F6F6;
+  border-radius: 8px;
 }
 
 .order-item {
-    padding: 10px;
-    border-bottom: 1px solid #DADADA;
-    margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #DADADA;
+  margin-bottom: 10px;
 }
 
 .order-item img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
 .order-item:last-child {
-    border-bottom: none;
-}
-
-.view-order-status-link {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.view-order-status-link a {
-    text-decoration: none;
-    color: #AC8F64;
-    font-weight: bold;
-    font-size: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.view-order-status-link a:hover {
-    color: #8B7355;
+  border-bottom: none;
 }
 
 .status-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #DADADA;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #DADADA;
 }
 
-.status-header .status {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
+
 
 .status-header .status p {
-    font-size: 20px;
-    font-weight: bold;
-    color: #483431;
-    margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #483431;
+  margin: 0;
 }
 
 .hide-button-container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .hide-status-btn {
-    background: #AC8F64;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+  background: #AC8F64;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .hide-status-btn:hover {
-    background: #8B7355;
+  background: #8B7355;
 }
 
 .hide-status-btn .arrow {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .price-display {
-    margin: 20px 0;
-    font-size: 20px;
-    font-weight: bold;
-    color: #483431;
+  margin: 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #483431;
 }
 
 .price-display #currentPrice {
-    color: #CD4126;
-    font-size: 24px;
+  color: #CD4126;
+  font-size: 24px;
 }
 
 .order-summary {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 2px solid #DADADA;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #DADADA;
 }
 
 .price-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
 .price-row.discount {
-    color: #AC8F64;
+  color: #AC8F64;
 }
 
 .price-row.total {
-    font-weight: bold;
-    font-size: 18px;
-    color: #CD4126;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #DADADA;
+  font-weight: bold;
+  font-size: 18px;
+  color: #CD4126;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #DADADA;
 }
 
 .price-value {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 
 
 footer {
-    background-color: #AC8F64;
-    color: #F6F6F6;
-    padding: 25px 20px;
-    margin-top: 40px;
-    text-align: center;
-    border-top: 4px solid #483431;
-    font-family: 'Times New Roman', Times, serif;
+  background-color: #AC8F64;
+  color: #F6F6F6;
+  padding: 25px 20px;
+  margin-top: 40px;
+  text-align: center;
+  border-top: 4px solid #483431;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 footer p {
-    margin: 12px 0;
-    line-height: 1.5;
-    color: #F6F6F6;
+  margin: 12px 0;
+  line-height: 1.5;
+  color: #F6F6F6;
 }
 
 footer p a {
-    margin: 0 12px;
+  margin: 0 12px;
 }
 
 footer img {
-    width: 60px;
-    height: 60px;
-    padding: 5px;
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+}
+
+.size-btn, .extra-btn, .milk-btn, .placeOrderBtn {
+  border-radius: 25px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.quantity-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #AC8F64;
+  background: white;
+  font-size: 20px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.coffeeInfoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+
+
+.size-btn:hover, .extra-btn:hover, .milk-btn:hover {
+  border-color: #000 !important; 
+}
+
+.size-btn, .extra-btn, .milk-btn {
+  padding: 8px 15px;
+  border: 2px solid transparent !important;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.size-btn.active, .extra-btn.active, .milk-btn.active {
+  background-color: #AC8F64;
+  color: white;
+  border-color: #000 !important;
+}
+
+.quantity-btn:hover {
+  border-color: #AC8F64 !important;
+}
+
+.size-btn:hover svg path,
+.size-btn.active svg path {
+  fill: #000 !important;
+}
+
+.size-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
